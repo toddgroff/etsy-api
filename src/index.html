@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Title</title>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Etsyndex</title>
+  </head>
+  <body data-page="etsyPage">
 
-  <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
+    <div class="main-content">
 
-  <h1>Index.html</h1>
-  <p>
-    Modify index.html to have whatever content you like.
-  </p>
-  <p>
-    This is just a starter project. You probably want to
-    build your own starter project as you see fit.
-  </p>
+    </div>
 
-  <script src="js/vendor.js"></script>
-  <script src="js/app.js"></script>
+    <script type="text/html" id="etsyList">
+      <ul>
+        <% m.items.forEach(function (item) { %>
+        <li class="listing">
+          <a class="item-title" href="<%- item.url %>">
+            <img src="<%- item.MainImage.url_75x75 %>">
+            <%- item.title %>
+          </a>
+          <span class="item-price">$<%- item.price %></span>
+          <span class="item-desc"><%- item.description %></span>
+          <a href="#profiles/<%- item.user_id %>" data-userid="<%- item.user_id %>" class="about-user">Seller</a>
+          <div class="user-modal"></div>
+        </li>
+        <% }) %>
+      </ul>
+    </script>
 
-</body>
+    <script type="text/html" id="userModal">
+      <div class="user-modal__box">
+        <div class="user-modal__content">
+          <span><%- m.login_name %></span>
+          <span><%- m.first_name + m.last_name %></span>
+        </div>
+      </div>
+    </script>
+
+    <script src="js/vendor.js"></script>
+    <script src="js/app.js"></script>
+  </body>
 </html>
